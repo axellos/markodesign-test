@@ -26,4 +26,9 @@ class CourierController extends Controller
                 ->paginate($this->getPerPage($request))
         );
     }
+
+    public function show(Courier $courier): JsonResource
+    {
+        return CourierResource::make($courier);
+    }
 }
