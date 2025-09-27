@@ -22,9 +22,6 @@ class CourierFactory extends Factory
             'phone_number' => $this->faker->unique()->numerify('380#########'),
             'is_active' => $this->faker->boolean(95),
             'vehicle_type' => $vehicleTypes[array_rand($vehicleTypes)],
-            'current_lat' => $this->faker->latitude(50, 51),
-            'current_lng' => $this->faker->longitude(30, 31),
-            'location_updated_at' => $this->faker->dateTimeThisMonth(),
         ];
     }
 }

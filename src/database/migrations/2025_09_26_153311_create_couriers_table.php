@@ -18,9 +18,6 @@ return new class extends Migration
             $table->boolean('is_active');
             $table->string('vehicle_type')->nullable();
             $table->foreignId('delivery_company_id')->constrained()->cascadeOnDelete();
-            $table->decimal('current_lat', 10, 7)->nullable();
-            $table->decimal('current_lng', 10, 7)->nullable();
-            $table->timestamp('location_updated_at')->nullable();
             $table->timestamps();
         });
     }

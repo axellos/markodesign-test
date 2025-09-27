@@ -8,6 +8,7 @@ use App\Enums\VehicleType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Courier extends Model
 {
@@ -35,5 +36,10 @@ class Courier extends Model
     public function deliveryCompany(): BelongsTo
     {
         return $this->belongsTo(DeliveryCompany::class);
+    }
+
+    public function location(): HasOne
+    {
+        return $this->hasOne(CourierLocation::class);
     }
 }
