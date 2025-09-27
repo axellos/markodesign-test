@@ -5,9 +5,13 @@
 @section('content')
     <h2 class="text-2xl font-bold mb-6">Couriers</h2>
 
-    <a href="#" class="inline-block mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-        Add New Courier
-    </a>
+    <div class="flex items-center justify-between mb-4">
+        <a href="{{ route('couriers.create') }}" class="inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+            Add New Courier
+        </a>
+
+        <div id="message-container" class="text-green-600 font-medium"></div>
+    </div>
 
     <table class="min-w-full bg-white rounded shadow overflow-hidden">
         <thead class="bg-gray-200">
@@ -67,4 +71,6 @@
     <div class="mt-4">
         {{ $couriers->links() }}
     </div>
+
+    <script src="{{ asset('js/courier-index.js') }}"></script>
 @endsection
