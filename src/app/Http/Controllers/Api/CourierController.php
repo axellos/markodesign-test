@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api;
 use App\Dto\CourierCreateData;
 use App\Dto\CourierUpdateData;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\WithPerPage;
 use App\Http\Requests\Api\StoreCourierRequest;
 use App\Http\Requests\Api\UpdateCourierRequest;
 use App\Http\Resources\CourierResource;
