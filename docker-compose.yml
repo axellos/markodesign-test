@@ -28,6 +28,20 @@ services:
       - redis
     restart: unless-stopped
 
+  reverb:
+    build:
+      context: ./docker/reverb
+    ports:
+      - 8080:8080
+    volumes:
+      - ./src:/var/www/html:cached
+    working_dir: /var/www/html
+    networks:
+      - main
+    depends_on:
+      - php
+    restart: unless-stopped
+
   mysql:
     image: mysql:8.2.0
     restart: unless-stopped

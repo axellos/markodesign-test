@@ -7,7 +7,7 @@ ARG WITH_XDEBUG=false
 
 WORKDIR /var/www/html
 
-RUN apk add --no-cache --update linux-headers icu-dev make \
+RUN apk add --no-cache --update linux-headers icu-dev make nodejs npm \
     && docker-php-ext-install pdo pdo_mysql bcmath intl pcntl
 
 RUN mkdir -p /usr/src/php/ext/redis  \
