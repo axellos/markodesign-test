@@ -30,4 +30,12 @@ class CourierController extends Controller
 
         return view('couriers.create', compact('deliveryCompanies', 'vehicleTypes'));
     }
+
+    public function edit(Request $request, Courier $courier): View
+    {
+        $deliveryCompanies = DeliveryCompany::query()->get();
+        $vehicleTypes = VehicleType::cases();
+
+        return view('couriers.edit', compact('courier', 'deliveryCompanies', 'vehicleTypes'));
+    }
 }

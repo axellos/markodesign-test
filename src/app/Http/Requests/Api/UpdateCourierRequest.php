@@ -23,7 +23,7 @@ class UpdateCourierRequest extends FormRequest
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'phone_number' => ['required', 'string', 'regex:/^\+?\d{10,15}$/', Rule::unique('couriers', 'phone_number')->ignore($this->courier->id)],
-            'is_active' => ['required', 'boolean'],
+            'is_active' => ['nullable', 'boolean'],
             'vehicle_type' => ['nullable', 'string', Rule::in(array_column(VehicleType::cases(), 'value'))],
             'delivery_company_id' => ['required', 'exists:delivery_companies,id'],
         ];

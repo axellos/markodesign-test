@@ -28,7 +28,7 @@ class CourierUpdateData implements Arrayable
             $validated['first_name'],
             $validated['last_name'],
             $validated['phone_number'],
-            (bool) $validated['is_active'],
+            isset($validated['is_active']) ? (bool) $validated['is_active'] : false,
             isset($validated['vehicle_type']) ? VehicleType::from($validated['vehicle_type']) : null,
             DeliveryCompany::query()->find($validated['delivery_company_id']),
         );
