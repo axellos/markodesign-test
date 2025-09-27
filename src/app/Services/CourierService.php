@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Dto\CourierCreateData;
+use App\Dto\CourierUpdateData;
 use App\Models\Courier;
 
 class CourierService
@@ -22,6 +23,19 @@ class CourierService
         ]);
 
         $courier->deliveryCompany()->associate($data->deliveryCompany);
+        $courier->save();
+
+        return $courier;
+    }
+
+    public function update(Courier $courier, CourierUpdateData $data): Courier
+    {
+        $courier->fill($data->toArray());
+
+        if ($data->deliveryCompany !== $courier->deliveryCompany()) {
+            $courier->deliveryCompany()->associate($data->deliveryCompany);
+        }
+
         $courier->save();
 
         return $courier;

@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api;
 
 use App\Dto\CourierCreateData;
+use App\Dto\CourierUpdateData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\StoreCourierRequest;
+use App\Http\Requests\Api\UpdateCourierRequest;
 use App\Http\Resources\CourierResource;
 use App\Models\Courier;
 use App\Services\CourierService;
@@ -46,5 +48,12 @@ class CourierController extends Controller
         $courier = $this->courierService->store(CourierCreateData::fromRequest($request));
 
         return response()->json(CourierResource::make($courier), Response::HTTP_CREATED);
+    }
+
+    public function update(UpdateCourierRequest $request, Courier $courier): JsonResponse
+    {
+        $courier = $this->courierService->update($courier, CourierUpdateData::fromRequest($request));
+
+        return response()->json(CourierResource::make($courier), Response::HTTP_OK);
     }
 }
