@@ -56,4 +56,11 @@ class CourierController extends Controller
 
         return response()->json(CourierResource::make($courier), Response::HTTP_OK);
     }
+
+    public function destroy(Courier $courier): JsonResponse
+    {
+        $this->courierService->delete($courier);
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
 }

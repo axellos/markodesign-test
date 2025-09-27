@@ -40,4 +40,9 @@ class CourierService
 
         return $courier;
     }
+
+    public function delete(Courier $courier): bool
+    {
+        return $courier->delete();
+    }
 }
