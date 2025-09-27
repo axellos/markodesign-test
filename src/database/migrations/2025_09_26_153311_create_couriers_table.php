@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone_number', 20)->unique();
-            $table->boolean('is_active')->default(true);
+            $table->boolean('is_active');
             $table->string('vehicle_type')->nullable();
             $table->foreignId('delivery_company_id')->constrained()->cascadeOnDelete();
             $table->decimal('current_lat', 10, 7)->nullable();
