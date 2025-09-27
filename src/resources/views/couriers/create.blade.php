@@ -5,9 +5,7 @@
 @section('content')
     <h2 class="text-2xl font-bold mb-6">Add Courier</h2>
 
-    <form id="create-courier-form" onsubmit="return false;" class="space-y-4 bg-white p-6 rounded shadow-md">
-        @csrf
-
+    <form onsubmit="handleCourierFormSubmit(event, 'POST', '/api/couriers', 'Courier created successfully!', '/')" class="space-y-4 bg-white p-6 rounded shadow-md">
         <div>
             <label class="block mb-1">First Name</label>
             <input type="text" name="first_name" class="w-full p-2 border rounded">
@@ -60,6 +58,4 @@
 
         <button type="submit" class="px-4 py-2 bg-green-700 text-white rounded hover:bg-green-600">Create</button>
     </form>
-
-    <script src="{{ asset('js/courier-create.js') }}"></script>
 @endsection
