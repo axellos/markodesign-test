@@ -56,6 +56,6 @@
             <div class="text-red-500 text-sm mt-1" id="error_delivery_company_id"></div>
         </div>
 
-        <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Update</button>
+        <button type="submit" class="px-4 py-2 bg-green-700 text-white rounded hover:bg-green-600">Update</button>
     </form>
 @endsection
