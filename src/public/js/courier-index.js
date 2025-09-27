@@ -10,3 +10,26 @@ if (msg) {
         container.remove();
     }, 5000);
 }
+
+async function deleteCourier(e, courierId) {
+    e.preventDefault();
+
+    try {
+        const response = await fetch(`/api/couriers/${courierId}`, {
+            method: 'DELETE',
+            headers: { 'Accept': 'application/json' },
+        });
+
+        if (response.ok) {
+            sessionStorage.setItem('message', 'Courier deleted successfully!');
+            window.location.reload();
+        } else {
+            const result = await response.json();
+            console.error('Delete failed:', result);
+            alert('Failed to delete courier.');
+        }
+    } catch (err) {
+        console.error('Network error:', err);
+        alert('Network error occurred.');
+    }
+}
