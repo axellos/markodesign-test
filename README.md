@@ -9,7 +9,7 @@
 
 ⚠️ Make sure the following local ports are free, or change them via docker .env
 * APP_PORT : **80**
-* DB_PORT : **3306**
+* DB_PORT : **33060**
 * REVERB_PORT : **8080**
 * REDIS_PORT : **6379**
 
