@@ -27,8 +27,22 @@
 * Application: http://localhost
 * Horizon dashboard: http://localhost/horizon
 * Swagger api documentation: http://localhost/api/documentation
+* Exported postman collection is available in project root - **postman_collection.json**
 
----
+## Tech Stack & Dependencies
+
+> All dependencies are installed automatically via Docker. The list below is informational.
+
+- **PHP v8.4** with Laravel 12.x
+- **MySQL v8.2**
+- **Redis v7.2** (caching & queues)
+- **Laravel Horizon** (queue monitoring)
+- **Reverb Reverb** (WebSocket server for real-time events)
+- **Laravel Echo** (frontend real-time events)
+- **Node.js v22 & Vite** (frontend tooling)
+- **TailwindCSS** (styling)
+- **Leaflet & OpenStreetMap API** (maps)
+- **Swagger** (API documentation)
 
 ## Approach & Reasoning
 
