@@ -21,7 +21,6 @@ class CourierResource extends JsonResource
             'is_active' => $this->is_active,
             'vehicle_type' => $this->vehicle_type,
             'delivery_company' => new DeliveryCompanyResource($this->deliveryCompany),
-            'location' => new CourierLocationResource($this->location),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
