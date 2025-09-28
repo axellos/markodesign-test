@@ -7,3 +7,7 @@
 
     <div id="map" class="w-full h-[80vh] rounded shadow mb-4"></div>
 @endsection
+
+@push('scripts')
+    @vite('resources/js/map.js')
+@endpush
