@@ -21,7 +21,7 @@
                class="block p-2 rounded hover:bg-gray-200
                       {{ request()->routeIs('map') ? 'bg-gray-300 font-semibold' : '' }}">
                 Map</a></li>
-        <li><a href="#" class="block p-2 rounded hover:bg-gray-200">Debug</a></li>
+        <li><a href="{{ route('debug') }}" class="block p-2 rounded hover:bg-gray-200">Debug</a></li>
     </ul>
 </nav>
 

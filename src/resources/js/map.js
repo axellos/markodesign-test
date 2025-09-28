@@ -3,6 +3,7 @@ import 'leaflet/dist/leaflet.css';
 import iconUrl from 'leaflet/dist/images/marker-icon.png';
 import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
+import {initCourierLocationListener} from "./echo-listeners.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     window.courierMarkers = {};
@@ -33,18 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const waitForEcho = setInterval(() => {
         if (window.Echo) {
             clearInterval(waitForEcho);
-
-            window.Echo.channel('couriers')
-                .listen('CourierLocationUpdated', (event) => {
-                    const marker = window.courierMarkers[event.courier_id];
-                    if (marker) {
-                        marker.setLatLng([event.lat, event.lng]);
-                    } else {
-                        window.courierMarkers[event.courier_id] = L.marker([event.lat, event.lng])
-                            .addTo(window.map)
-                            .bindPopup(`Courier ${event.courier_id}`);
-                    }
-                });
+            initCourierLocationListener(window.map, window.courierMarkers)
         }
     }, 100);
 });
