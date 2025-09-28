@@ -1,0 +1,291 @@
+{
+	"info": {
+		"_postman_id": "fbe94bce-39a4-43d3-9da5-8a741d8fece9",
+		"name": "Couriers Service  API",
+		"description": "API for managing couriers, their details, and live locations.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4701742"
+	},
+	"item": [
+		{
+			"name": "Couriers",
+			"item": [
+				{
+					"name": "List all couriers",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "applciation/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost/api/couriers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"couriers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new courier",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "John",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Doe",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "380991112234",
+									"type": "text"
+								},
+								{
+									"key": "is_active",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "delivery_company_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/api/couriers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"couriers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get courier details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost/api/couriers/15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"couriers",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update courier",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "John2",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Doe2",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "380991112236",
+									"type": "text"
+								},
+								{
+									"key": "delivery_company_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "is_active",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/api/couriers/25",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"couriers",
+								"25"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete courier",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost/api/couriers/56",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"couriers",
+								"56"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Locations",
+			"item": [
+				{
+					"name": "Update courier location",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "lat",
+									"value": "50.4501",
+									"type": "text"
+								},
+								{
+									"key": "lng",
+									"value": "30.5234",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/api/couriers/12/location",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"couriers",
+								"12",
+								"location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all courier locations",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost/api/courier-locations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"courier-locations"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
