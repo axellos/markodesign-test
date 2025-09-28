@@ -15,3 +15,5 @@ Route::prefix('couriers')->name('api.couriers.')->group(function () {
 
     Route::put('{courier}/location', [CourierLocationController::class, 'update']);
 });
+
+Route::get('courier-locations', [CourierLocationController::class, 'index'])->name('courier-locations.index');

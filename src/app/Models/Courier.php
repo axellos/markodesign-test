@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\VehicleType;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,9 +23,6 @@ class Courier extends Model
         'phone_number',
         'is_active',
         'vehicle_type',
-        'current_lat',
-        'current_lng',
-        'location_updated_at',
     ];
 
     protected $casts = [
@@ -31,7 +30,6 @@ class Courier extends Model
         'current_lng' => 'float',
         'is_active' => 'boolean',
         'vehicle_type' => VehicleType::class,
-        'location_updated_at' => 'datetime',
     ];
 
     public function deliveryCompany(): BelongsTo
@@ -49,5 +47,11 @@ class Courier extends Model
         return Attribute::make(
             get: fn () => $this->vehicle_type->label()
         );
+    }
+
+    #[Scope]
+    protected function active(Builder $query): void
+    {
+        $query->where('is_active', true);
     }
 }

@@ -14,10 +14,9 @@ class CourierLocationResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
             'lat' => $this->lat,
             'lng' => $this->lng,
-            'created_at' => $this->created_at,
+            'courier_id' => $this->courier_id,
             'updated_at' => $this->updated_at,
         ];
     }

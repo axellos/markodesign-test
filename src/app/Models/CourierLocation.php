@@ -12,6 +12,7 @@ class CourierLocation extends Model
     protected $fillable = [
         'lat',
         'lng',
+        'updated_at',
     ];
 
     protected $casts = [

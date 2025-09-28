@@ -23,13 +23,4 @@ class CourierLocationUpdated implements ShouldBroadcastNow
     {
         return new Channel('couriers');
     }
-
-    public function broadcastWith(): array
-    {
-        return [
-            'courier_id' => $this->courierId,
-            'lat' => $this->lat,
-            'lng' => $this->lng,
-        ];
-    }
 }
