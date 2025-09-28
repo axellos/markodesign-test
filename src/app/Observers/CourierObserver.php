@@ -7,7 +7,7 @@ namespace App\Observers;
 use App\Models\Courier;
 use App\Services\CourierLocationService;
 
-class CourierObserver
+readonly class CourierObserver
 {
     public function __construct(
         private CourierLocationService $courierLocationService,

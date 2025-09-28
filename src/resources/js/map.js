@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function fetchCourierLocations() {
     try {
-        const response = await fetch('/api/courier-locations'); // adjust endpoint if needed
+        const response = await fetch('/api/courier-locations');
         if (response.ok) {
             return await response.json();
         }

@@ -21,7 +21,6 @@ async function handleCourierFormSubmit(e, method, url, message, redirectUrl) {
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
 
-    // clear errors
     ['first_name','last_name','phone_number','is_active','vehicle_type','delivery_company_id']
         .forEach(field => {
             const el = document.getElementById('error_' + field);
