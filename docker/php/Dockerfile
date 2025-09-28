@@ -37,4 +37,6 @@ RUN mkdir -p /var/log \
 
 USER laravel
 
+RUN composer install
+
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]
