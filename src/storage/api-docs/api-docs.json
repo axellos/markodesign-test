@@ -1,0 +1,225 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Courier API",
+        "version": "1.0.0",
+        "description": "API for managing couriers, their details, and live locations."
+    },
+    "servers": [
+        {
+            "url": "http://localhost/api"
+        }
+    ],
+    "paths": {
+        "/couriers": {
+            "get": {
+                "summary": "List all couriers",
+                "tags": ["Couriers"],
+                "responses": {
+                    "200": {
+                        "description": "A list of couriers",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": { "$ref": "#/components/schemas/Courier" }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new courier",
+                "tags": ["Couriers"],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": { "$ref": "#/components/schemas/StoreCourierRequest" }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Courier created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": { "$ref": "#/components/schemas/Courier" }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/couriers/{courier}": {
+            "get": {
+                "summary": "Get courier details",
+                "tags": ["Couriers"],
+                "parameters": [{ "$ref": "#/components/parameters/CourierId" }],
+                "responses": {
+                    "200": {
+                        "description": "Courier resource",
+                        "content": {
+                            "application/json": {
+                                "schema": { "$ref": "#/components/schemas/Courier" }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update courier",
+                "tags": ["Couriers"],
+                "parameters": [{ "$ref": "#/components/parameters/CourierId" }],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": { "$ref": "#/components/schemas/UpdateCourierRequest" }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Courier updated",
+                        "content": {
+                            "application/json": {
+                                "schema": { "$ref": "#/components/schemas/Courier" }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete courier",
+                "tags": ["Couriers"],
+                "parameters": [{ "$ref": "#/components/parameters/CourierId" }],
+                "responses": { "204": { "description": "Courier deleted" } }
+            }
+        },
+        "/couriers/{courier}/location": {
+            "put": {
+                "summary": "Update courier location",
+                "tags": ["Courier Locations"],
+                "parameters": [{ "$ref": "#/components/parameters/CourierId" }],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": { "$ref": "#/components/schemas/UpdateCourierLocationRequest" }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Courier location updated",
+                        "content": {
+                            "application/json": {
+                                "schema": { "$ref": "#/components/schemas/CourierLocation" }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/courier-locations": {
+            "get": {
+                "summary": "List all courier locations",
+                "tags": ["Courier Locations"],
+                "responses": {
+                    "200": {
+                        "description": "A list of courier locations",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": { "$ref": "#/components/schemas/CourierLocation" }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "parameters": {
+            "CourierId": {
+                "name": "courier",
+                "in": "path",
+                "required": true,
+                "schema": { "type": "integer" },
+                "description": "Courier ID"
+            }
+        },
+        "schemas": {
+            "StoreCourierRequest": {
+                "type": "object",
+                "required": ["first_name", "last_name", "phone_number", "delivery_company_id"],
+                "properties": {
+                    "first_name": { "type": "string", "example": "John", "description": "Required. Max length: 255." },
+                    "last_name": { "type": "string", "example": "Doe", "description": "Required. Max length: 255." },
+                    "phone_number": { "type": "string", "pattern": "^\\+?\\d{10,15}$", "example": "+380991112233", "description": "Required. Must match regex /^\\+?\\d{10,15}$/ and be unique." },
+                    "is_active": { "type": "boolean", "example": true, "description": "Optional. Boolean." },
+                    "vehicle_type": { "type": "string", "nullable": true, "example": "bike", "description": "Optional. Must be one of the predefined vehicle types." },
+                    "delivery_company_id": { "type": "integer", "example": 1, "description": "Required. Must exist in delivery_companies table." }
+                }
+            },
+            "UpdateCourierRequest": {
+                "type": "object",
+                "required": ["first_name", "last_name", "phone_number", "delivery_company_id"],
+                "properties": {
+                    "first_name": { "type": "string", "example": "John", "description": "Required. Max length: 255." },
+                    "last_name": { "type": "string", "example": "Doe", "description": "Required. Max length: 255." },
+                    "phone_number": { "type": "string", "pattern": "^\\+?\\d{10,15}$", "example": "+380991112233", "description": "Required. 10 to 15 digits, optional + at start, must be unique" },
+                    "is_active": { "type": "boolean", "example": true, "description": "Optional. Boolean." },
+                    "vehicle_type": { "type": "string", "nullable": true, "example": "car", "description": "Optional. Must be one of the predefined vehicle types." },
+                    "delivery_company_id": { "type": "integer", "example": 1, "description": "Required. Must exist in delivery_companies table." }
+                }
+            },
+            "UpdateCourierLocationRequest": {
+                "type": "object",
+                "required": ["lat", "lng"],
+                "properties": {
+                    "lat": { "type": "number", "format": "float", "minimum": -90, "maximum": 90, "example": 50.4501, "description": "Required. Latitude between -90 and 90." },
+                    "lng": { "type": "number", "format": "float", "minimum": -180, "maximum": 180, "example": 30.5234, "description": "Required. Longitude between -180 and 180." }
+                }
+            },
+            "CourierLocation": {
+                "type": "object",
+                "properties": {
+                    "lat": { "type": "number", "example": 50.4501 },
+                    "lng": { "type": "number", "example": 30.5234 },
+                    "courier_id": { "type": "integer", "example": 1 },
+                    "synced_at": { "type": "string", "format": "date-time", "example": "2025-09-28T12:34:56Z" }
+                }
+            },
+            "Courier": {
+                "type": "object",
+                "properties": {
+                    "id": { "type": "integer", "example": 1 },
+                    "first_name": { "type": "string", "example": "John" },
+                    "last_name": { "type": "string", "example": "Doe" },
+                    "phone_number": { "type": "string", "example": "+380991112233" },
+                    "is_active": { "type": "boolean", "example": true },
+                    "vehicle_type": { "type": "string", "example": "car" },
+                    "delivery_company": { "$ref": "#/components/schemas/DeliveryCompany" },
+                    "created_at": { "type": "string", "format": "date-time", "example": "2025-09-28T12:34:56Z" },
+                    "updated_at": { "type": "string", "format": "date-time", "example": "2025-09-28T12:34:56Z" }
+                }
+            },
+            "DeliveryCompany": {
+                "type": "object",
+                "properties": {
+                    "id": { "type": "integer", "example": 1 },
+                    "name": { "type": "string", "example": "FastExpress" },
+                    "phone_number": { "type": "string", "example": "+380991112233" },
+                    "email": { "type": "string", "format": "email", "example": "contact@fastexpress.com" },
+                    "created_at": { "type": "string", "format": "date-time" },
+                    "updated_at": { "type": "string", "format": "date-time" }
+                }
+            }
+        }
+    }
+}

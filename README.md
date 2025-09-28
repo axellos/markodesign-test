@@ -22,7 +22,11 @@
 4. **Initialize the project**
     ```bash
    make init
-5. Done! The project is ready to use. The application is available at http://localhost. Horizon dashboard is available at http://localhost/horizon
+5. Done! The project is ready to use. 
+
+* Application: http://localhost
+* Horizon dashboard: http://localhost/horizon
+* Swagger api documentation: http://localhost/api/documentation
 
 ---
 
@@ -42,6 +46,7 @@ I also tried to rely on **first-party Laravel tools** where possible and **free/
 - **TailwindCSS** - Used for quick, consistent, and responsive styling without writing a lot of custom CSS.
 - **Plain JavaScript** - Enough for this task because frontend is the secondary.
 - **Leaflet + OpenStreetMap** - Free and open-source mapping solution for showing courier locations.
+- **Swagger** - Default tool for API documentation, making endpoints easy to explore and test.
 - **Docker + Docker Compose** - Ensures everything runs in isolated, reproducible containers.
 - **Makefile** - Provides simple command for project initialization.
 
