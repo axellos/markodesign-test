@@ -52,6 +52,7 @@ services:
       - main
     depends_on:
       - php
+      - redis
     restart: unless-stopped
 
   mysql:

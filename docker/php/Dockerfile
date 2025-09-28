@@ -26,6 +26,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 COPY ./supervisord.conf /etc/supervisord.conf
 
+COPY --chmod=755 ./entrypoint.sh /entrypoint.sh
+
 RUN addgroup -g ${GID} --system laravel \
     && adduser -G laravel --system -D -s /bin/sh -u ${UID} laravel \
     && sed -i "s/user = www-data/user = laravel/g" /usr/local/etc/php-fpm.d/www.conf \
@@ -37,6 +39,4 @@ RUN mkdir -p /var/log \
 
 USER laravel
 
-RUN composer install
-
-CMD ["supervisord", "-c", "/etc/supervisord.conf"]
+ENTRYPOINT ["/entrypoint.sh"]
