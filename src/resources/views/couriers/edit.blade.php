@@ -36,7 +36,7 @@
             <label class="block mb-1">Vehicle Type</label>
             <select name="vehicle_type" class="w-full p-2 border rounded">
                 @foreach($vehicleTypes as $type)
-                    <option value="{{ $type->value }}" {{ $courier->vehicle_type === $type->value ? 'selected' : '' }}>
+                    <option value="{{ $type->value }}" {{ $courier->vehicle_type->value === $type->value ? 'selected' : '' }}>
                         {{ $type->label() }}
                     </option>
                 @endforeach
