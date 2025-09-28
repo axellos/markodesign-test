@@ -42,6 +42,18 @@ services:
       - php
     restart: unless-stopped
 
+  horizon:
+    build:
+      context: ./docker/horizon
+    volumes:
+      - ./src:/var/www/html:cached
+    working_dir: /var/www/html
+    networks:
+      - main
+    depends_on:
+      - php
+    restart: unless-stopped
+
   mysql:
     image: mysql:8.2.0
     restart: unless-stopped
