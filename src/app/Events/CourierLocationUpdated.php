@@ -15,8 +15,8 @@ class CourierLocationUpdated implements ShouldBroadcastNow
 
     public function __construct(
         public int $courierId,
-        public float $lat,
-        public float $lng,
+        public ?float $lat,
+        public ?float $lng,
     ) {}
 
     public function broadcastOn(): Channel

@@ -30,6 +30,12 @@ readonly class CourierLocationService
         $this->eventManager->dispatch(new CourierLocationUpdated($courier->id, $lat, $lng));
     }
 
+    public function deleteLocation(Courier $courier): void
+    {
+        $this->redis->del($this->getRedisKey($courier->id));
+        $this->eventManager->dispatch(new CourierLocationUpdated($courier->id, null, null));
+    }
+
     public function setLocation(CourierLocation $location): void
     {
         $data = json_encode([
