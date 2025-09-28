@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     locations?.data.forEach(location => {
         if (location && location.lat && location.lng) {
-            window.courierMarkers[location.id] = L.marker([location.lat, location.lng])
+            window.courierMarkers[location.courier_id] = L.marker([location.lat, location.lng])
                 .addTo(window.map)
                 .bindPopup(`Courier ${location.courier_id}`);
         }
