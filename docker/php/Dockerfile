@@ -7,7 +7,7 @@ ARG WITH_XDEBUG=false
 
 WORKDIR /var/www/html
 
-RUN apk add --no-cache --update linux-headers icu-dev make nodejs npm \
+RUN apk add --no-cache --update linux-headers icu-dev make nodejs npm supervisor \
     && docker-php-ext-install pdo pdo_mysql bcmath intl pcntl
 
 RUN mkdir -p /usr/src/php/ext/redis  \
@@ -24,12 +24,17 @@ RUN if [ "$WITH_XDEBUG" = "true" ]; then \
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
+COPY ./supervisord.conf /etc/supervisord.conf
+
 RUN addgroup -g ${GID} --system laravel \
     && adduser -G laravel --system -D -s /bin/sh -u ${UID} laravel \
     && sed -i "s/user = www-data/user = laravel/g" /usr/local/etc/php-fpm.d/www.conf \
     && sed -i "s/group = www-data/group = laravel/g" /usr/local/etc/php-fpm.d/www.conf \
     && echo "php_admin_flag[log_errors] = on" >> /usr/local/etc/php-fpm.d/www.conf
 
+RUN mkdir -p /var/log \
+    && chown -R laravel:laravel /var/log
+
 USER laravel
 
-CMD ["php-fpm", "-y", "/usr/local/etc/php-fpm.conf", "-R"]
+CMD ["supervisord", "-c", "/etc/supervisord.conf"]

@@ -17,7 +17,7 @@ class CourierLocationResource extends JsonResource
             'lat' => $this->lat,
             'lng' => $this->lng,
             'courier_id' => $this->courier_id,
-            'updated_at' => $this->updated_at,
+            'synced_at' => $this->synced_at,
         ];
     }
 }

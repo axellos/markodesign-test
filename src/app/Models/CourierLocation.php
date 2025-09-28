@@ -12,12 +12,13 @@ class CourierLocation extends Model
     protected $fillable = [
         'lat',
         'lng',
-        'updated_at',
+        'synced_at',
     ];
 
     protected $casts = [
         'lat' => 'float',
         'lng' => 'float',
+        'synced_at' => 'datetime',
     ];
 
     public function courier(): BelongsTo
