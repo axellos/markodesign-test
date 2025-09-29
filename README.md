@@ -24,39 +24,24 @@
    make init
 5. Done! The project is ready to use. 
 
-* Application: http://localhost
-* Horizon dashboard: http://localhost/horizon
-* Swagger api documentation: http://localhost/api/documentation
+* **Application**: http://localhost
+* **Horizon dashboard**: http://localhost/horizon
+* **Swagger api documentation**: http://localhost/api/documentation
 * Exported postman collection is available in project root - **postman_collection.json**
-
-## Tech Stack & Dependencies
-
-> All dependencies are installed automatically via Docker. The list below is informational.
-
-- **PHP v8.4** with Laravel 12.x
-- **MySQL v8.2**
-- **Redis v7.2** (caching & queues)
-- **Laravel Horizon** (queue monitoring)
-- **Reverb Reverb** (WebSocket server for real-time events)
-- **Laravel Echo** (frontend real-time events)
-- **Node.js v22 & Vite** (frontend tooling)
-- **TailwindCSS** (styling)
-- **Leaflet & OpenStreetMap API** (maps)
-- **Swagger** (API documentation)
 
 ## Approach & Reasoning
 
-When working on this task, my main goal was to keep the system **reliable, and easy to extend** later if needed.  
-I also tried to rely on **first-party Laravel tools** where possible and **free/open-source services** like OpenStreetMap to avoid unnecessary complexity or costs.
+When working on this task, my main goal was to keep the system reliable, and easy to extend later if needed.  
+I also tried to rely on first-party Laravel tools where possible and free/open-source services like OpenStreetMap to avoid unnecessary complexity or costs.
 
 ## Stack & Services
 
-- **PHP-FPM + Nginx** - A solid and proven setup for running Laravel based application with good performance.
-- **MySQL** - A reliable relational database that works well for structured data.
-- **Redis** - Used both for in-memory database and as the queue driver.
+- **PHP 8.4 + Laravel 12.x** - Core framework powering the application. Runs under **PHP-FPM + Nginx** for solid performance.
+- **MySQL v8.2** - A reliable relational database that works well for structured data.
+- **Redis v7.2** - Used both for in-memory database and as the queue driver.
 - **Laravel Horizon** - First-party tool that gives a clear view of queues and workers.
 - **Reverb** - First-party solution for handling WebSockets.
-- **Vite** - A modern default bundler that improves frontend development workflow.
+- **Node.js v22 & Vite** - Modern frontend build tooling.
 - **TailwindCSS** - Used for quick, consistent, and responsive styling without writing a lot of custom CSS.
 - **Plain JavaScript** - Enough for this task because frontend is the secondary.
 - **Leaflet + OpenStreetMap** - Free and open-source mapping solution for showing courier locations.
@@ -72,7 +57,7 @@ I also tried to rely on **first-party Laravel tools** where possible and **free/
 
 - **PHP container** runs with **Supervisor**, handling two processes:
     - `php-fpm` for web requests
-    - Laravel **Scheduler** for background tasks (like syncing data)
+    - Laravel scheduler for background tasks (like syncing data)
 
 ---
 
